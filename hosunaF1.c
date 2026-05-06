@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+int guessNum(void);
 int main (void)
 {
 	char choice1 = ' ';
@@ -17,7 +17,8 @@ int main (void)
 	char name[50] = " ";
 	printf("Who dares enter?...\nIdentify your first name:\n");
 	scanf(" %s", name);
-	printf("\nWelcome %s, You've entered the puzzle box room.\nYou must now answer 5 riddles in order to progress:\n", name);
+	printf("\nWelcome %s, You've entered the puzzle box room.\nYou must now answer my riddles in order to progress:\n", name);
+	guessNum();
 	printf("Why was 6 afraid of 7?\nA) Because 7 EIGHT 9\nB) Because SIX SEVEN\nEnter 'A' or 'B'\n");
 	scanf(" %c", &choice1);
 	while (choice1 != 'A')
@@ -75,3 +76,39 @@ int main (void)
 	return EXIT_SUCCESS;
 
 }
+
+int guessNum(void)
+{
+	int guess = 0;
+	int answer = (rand() %10) + 1;
+	printf("\nGuess the number between 1 and 10: \n");
+	scanf("%d", &guess);
+	
+	while (guess != answer)
+	{
+                if (guess >= 11 || guess <= 0)
+                {
+			printf("You input a number that is out of range (1-20). Re-enter a valid number: \n");
+                        scanf("%d", &guess);
+                }
+		else if (guess != answer && guess < 11 && guess > 0)
+		{
+			if (guess < answer)
+			{
+				printf("WRONG. Too low\n");
+			}
+			else if (guess > answer)
+			{
+				printf("WRONG. Too high\n");
+			}
+			scanf("%d", &guess);
+		}
+	}
+	if (guess == answer)
+	{
+		printf("\nCorrect...It seemse you've bested me.!\nOnto the next trial\n");
+		
+	}
+}
+
+
