@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 int guessNum(void);
 int main (void)
 {
@@ -16,7 +18,7 @@ int main (void)
 	char choice5[50] = " ";
 	char name[50] = " ";
 	printf("Who dares enter?...\nIdentify your first name:\n");
-	scanf(" %s", name);
+	scanf("%49s", name);
 	printf("\nWelcome %s, You've entered the puzzle box room.\nYou must now answer my riddles in order to progress:\n", name);
 	guessNum();
 	printf("Why was 6 afraid of 7?\nA) Because 7 EIGHT 9\nB) Because SIX SEVEN\nEnter 'A' or 'B'\n");
@@ -27,11 +29,11 @@ int main (void)
 		scanf(" %c", &choice1);
 	}
 	printf("Correct!\nFill in the blank. What walks on 4 legs\nthen on two legs\nthen on three legs?\nThe answer is a _____.\n"); 
-	scanf("%s", &choice2);
+	scanf("%49s", choice2);
 	while (!(strcmp(choice2, "human") == 0) && !(strcmp(choice2, "person") == 0))
         {
                 printf("Hmm, sorry guess again\n");
-                scanf("%s", &choice2);
+                scanf("%49s", choice2);
         }
 	printf("Correct!\n");
 	printf("Only a real human could have gotten that correct.\nWhat is 9 plus 10?\n21\t19\t911\nEnter your choice:\n");
@@ -58,20 +60,20 @@ int main (void)
 	}
 	printf("ExcEptionally done!\n...onto the final trial.\n");
 	printf("I belong to you, but others use me more often than you do. \nWhat am I?\n");
-	scanf("%s", &choice5);
+	scanf("%49s", choice5);
 	while (!(strcasecmp(choice5, "name") == 0))
 	{
 		printf("\nDon't give up, the answer calls upon you...\n");
-		scanf("%s", &choice5);
+		scanf("%49s", choice5);
 	}
 	printf("\nHmm...verify your answer:\n");
-	scanf("%s", &choice5);
-        while (!(strcasecmp(choice5, &name) == 0))
+	scanf("%49s", choice5);
+        while (!(strcasecmp(choice5, name) == 0))
         {
                 printf("\nLook nowhere but to yourself for the answer\n");
-                scanf("%s", &choice5);
+                scanf("%49s", choice5);
         }
-	printf("Well done %s! \nYou are one of few to pass the trials of destiny. \nYou may now continue on your journey. \nBest of luck...\n", &name);
+	printf("Well done %s! \nYou are one of few to pass the trials of destiny. \nYou may now continue on your journey. \nBest of luck...\n", name);
 
 	return EXIT_SUCCESS;
 
@@ -88,7 +90,7 @@ int guessNum(void)
 	{
                 if (guess >= 11 || guess <= 0)
                 {
-			printf("You input a number that is out of range (1-20). Re-enter a valid number: \n");
+			printf("You input a number that is out of range (1-10). Re-enter a valid number: \n");
                         scanf("%d", &guess);
                 }
 		else if (guess != answer && guess < 11 && guess > 0)
